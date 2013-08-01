@@ -1382,6 +1382,43 @@ class npc_morbidus : public CreatureScript
         }
 };
 
+/*######
+## Quest: It's All Fun and Games (12887 A/H 12892)
+######*/
+enum gen_ocular_death
+{
+    // Spells
+    SPELL_OCULAR_KILL_CREDIT    =   55288
+};
+
+class spell_gen_ocular_death : public SpellScriptLoader
+{
+    public:
+        spell_gen_ocular_death() : SpellScriptLoader("spell_gen_ocular_death") { }
+
+        class spell_gen_ocular_death_SpellScript : public SpellScript
+        {
+            PrepareSpellScript(spell_gen_ocular_death_SpellScript);
+
+
+            void HandleScript(SpellEffIndex /*effIndex*/)
+            {
+                if (Unit* const target = GetHitUnit())
+                    target->CastSpell(target, GetEffectValue(), true);
+            }
+
+            void Register()
+            {
+                OnEffectHitTarget += SpellEffectFn(spell_gen_ocular_death_SpellScript::HandleScript, EFFECT_0, SPELL_EFFECT_SCRIPT_EFFECT);
+            }
+        };
+
+        SpellScript* GetSpellScript() const
+        {
+            return new spell_gen_ocular_death_SpellScript();
+        }
+};
+
 void AddSC_icecrown()
 {
     new npc_arete;
@@ -1390,8 +1427,9 @@ void AddSC_icecrown()
     new npc_guardian_pavilion;
     new npc_vereth_the_cunning;
     new npc_tournament_training_dummy;
-    new npc_blessed_banner();
-    new npc_frostbrood_skytalon();
+    new npc_blessed_banner;
+    new npc_frostbrood_skytalon;
+    new spell_gen_ocular_death;
     new npc_margrave_dhakar();
     new npc_morbidus();
     new npc_valiant;
