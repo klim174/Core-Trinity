@@ -3048,41 +3048,41 @@ void SpellMgr::LoadSpellInfoCorrections()
                 spellInfo->MaxAffectedTargets = 1;
                 break;
             case 42730:
-                spellInfo->EffectTriggerSpell[EFFECT_1] = 42739;
+                spellInfo->Effects[EFFECT_1].TriggerSpell = 42739;
                 break;
             case 59735:
-                spellInfo->EffectTriggerSpell[EFFECT_1] = 59736;
+                spellInfo->Effects[EFFECT_1].TriggerSpell = 59736;
                 break;
             case 52611: // Summon Skeletons
             case 52612: // Summon Skeletons
-                spellInfo->EffectMiscValueB[0] = 64;
+                spellInfo->Effects[EFFECT_0].MiscValueB = 64;
                 break;
             case 40244: // Simon Game Visual
             case 40245: // Simon Game Visual
             case 40246: // Simon Game Visual
             case 40247: // Simon Game Visual
             case 42835: // Spout, remove damage effect, only anim is needed
-                spellInfo->Effect[0] = 0;
+                spellInfo->Effects[EFFECT_0].Effect = 0;
                 break;
 				case SPELLFAMILY_PRIEST:
 					// Twin Disciplines ahora es afectado a Prayer of Mending
 					if (spellInfo->SpellIconID == 2292)
-						spellInfo->EffectSpellClassMask[0][1] |= 0x20;
+						spellInfo->Effects[EFFECT_0].SpellClassMask[1] |= 0x20;
 					// Spiritual Healing ahora es afectado a Prayer of Mending
 					else if (spellInfo->SpellIconID == 46)
-						spellInfo->EffectSpellClassMask[0][1] |= 0x20;
+						spellInfo->Effects[EFFECT_0].SpellClassMask[1] |= 0x20;
 					// Divine Providence ahora es afectado a Prayer of Mending
 					else if (spellInfo->SpellIconID == 2845 && spellInfo->Id != 64844)
-						spellInfo->EffectSpellClassMask[0][1] |= 0x20;
+						spellInfo->Effects[EFFECT_0].SpellClassMask[1] |= 0x20;
 					else
 						break;
 					break;
             case 30657: // Quake
-                spellInfo->EffectTriggerSpell[0] = 30571;
+                spellInfo->Effects[EFFECT_0].TriggerSpell = 30571;
                 break;
             case 30541: // Blaze (needs conditions entry)
-                spellInfo->EffectImplicitTargetA[0] = TARGET_UNIT_TARGET_ENEMY;
-                spellInfo->EffectImplicitTargetB[0] = 0;
+                spellInfo->Effects[EFFECT_0].TargetA = SpellImplicitTargetInfo(TARGET_UNIT_TARGET_ENEMY);
+                spellInfo->Effects[EFFECT_0].TargetB = SpellImplicitTargetInfo(0);
                 break;
             case 63665: // Charge (Argent Tournament emote on riders)
             case 31298: // Sleep (needs target selection script)
@@ -3216,21 +3216,21 @@ void SpellMgr::LoadSpellInfoCorrections()
             case 64823: // Item - Druid T8 Balance 4P Bonus
             case 34477: // Misdirection
             case 44401: // Missile Barrage
-                spellInfo->procCharges = 1;
+                spellInfo->ProcCharges = 1;
                 break;
 				case 53257: // Cobra Strikes
-					spellInfo->procCharges = 2;
+					spellInfo->ProcCharges = 2;
 					spellInfo->StackAmount = 0;
 					break;
             case 44544: // Fingers of Frost
-                spellInfo->EffectSpellClassMask[0] = flag96(685904631, 1151048, 0);
+                spellInfo->Effects[EFFECT_0].SpellClassMask = flag96(685904631, 1151048, 0);
                 break;
             case 74396: // Fingers of Frost visual buff
-                spellInfo->procCharges = 2;
+                spellInfo->ProcCharges = 2;
                 spellInfo->StackAmount = 0;
                 break;
             case 28200: // Ascendance (Talisman of Ascendance trinket)
-                spellInfo->procCharges = 6;
+                spellInfo->ProcCharges = 6;
                 break;
             case 47201: // Everlasting Affliction
             case 47202:
@@ -3698,9 +3698,9 @@ void SpellMgr::LoadSpellInfoCorrections()
                 spellInfo->Effects[EFFECT_1].RadiusEntry = sSpellRadiusStore.LookupEntry(EFFECT_RADIUS_200_YARDS); // 200yd
                 break;
             case 68645: // Rocket Pack! Hack untill movejump will be implemented properly.
-                spellInfo->Effect[0] = SPELL_EFFECT_KNOCK_BACK_DEST;
-                spellInfo->EffectMiscValue[0] = -250;
-                spellInfo->EffectBasePoints[0] = 150;
+                spellInfo->Effects[EFFECT_0].Effect = SPELL_EFFECT_KNOCK_BACK_DEST;
+                spellInfo->Effects[EFFECT_0].MiscValue = -250;
+                spellInfo->Effects[EFFECT_0].BasePoints = 150;
                 break;	
             // ENDOF ICECROWN CITADEL SPELLS
             //
@@ -3765,8 +3765,8 @@ void SpellMgr::LoadSpellInfoCorrections()
                 spellInfo->ManaPerSecond = 0;
                 break;
 			case 42793: // Burn Body (Quest: War Is Hell!)
-				spellInfo->EffectImplicitTargetA[2] = TARGET_UNIT_CASTER;
-				spellInfo->EffectMiscValue[2] = 24008;
+				spellInfo->Effects[EFFECT_2].TargetA = SpellImplicitTargetInfo(TARGET_UNIT_CASTER);
+				spellInfo->Effects[EFFECT_2].MiscValue = 24008;
             case 24314: // Threatening Gaze
                 spellInfo->AuraInterruptFlags |= AURA_INTERRUPT_FLAG_CAST | AURA_INTERRUPT_FLAG_MOVE | AURA_INTERRUPT_FLAG_JUMP;
             default:
