@@ -1,5 +1,5 @@
 Patch: 3.3.5a
-Emulator: TrinityCore With
+Emulator: TrinityCore With MMAPS
 We are using custom Implentements:
 =================================
                     --Transmogrification
