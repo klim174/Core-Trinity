@@ -1,4 +1,4 @@
-Patch: 3.3.5a
+Patch: 3.3.5a 
 Emulator: TrinityCore With MMAPS
 We are using custom Implentements:
 =================================
